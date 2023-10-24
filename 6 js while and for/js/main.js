@@ -123,17 +123,36 @@
 /////////////////////////////////////////////////////////////////////////////////////
 
 
-const multiplicationTable = () => {
-  const number = +prompt('Enter number')
-  if (!isNaN(number)) {
-    for (let i = 1; i <= 10; i++) {
-      console.log(`${number} * ${i} = ${i*number}`);
+// const multiplicationTable = () => {
+//   const number = +prompt('Enter number')
+//   if (!isNaN(number)) {
+//     for (let i = 1; i <= 10; i++) {
+//       console.log(`${number} * ${i} = ${i*number}`);
+//     }
+//   }
+//   else{
+//     alert('Enter number, not symbols')
+//     multiplicationTable()
+//   }
+// }
+
+// multiplicationTable()
+
+
+// const randomNum = Math.floor(Math.random() * 100)
+
+let combinations = 0; 
+const password = Math.floor(Math.random() * 1000)
+for (let i = 0; i <= 9; i++) {
+  for (let j = 0; j <= 9; j++) {
+    for (let k = 0; k <= 9; k++) {
+        // console.log(`${i}${j}${k}`);
+        if (password === combinations) {
+          console.log(password + ' = ' + combinations)
+          break
+        }
+        combinations++;
     }
-  }
-  else{
-    alert('Enter number, not symbols')
-    multiplicationTable()
   }
 }
 
-multiplicationTable()
