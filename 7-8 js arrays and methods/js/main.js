@@ -346,3 +346,13 @@
 // }, 0)
 
 // console.log(reduce);
+
+[
+  'https://dsfklasdjf.kldjf',
+  'https://dsfklasdjf.kldjf',
+  'https://dsfklasdjf.kldjf',
+  'https://dsfklasdjf.kldjf',
+  'https://dsfklasdjf.kldjf',
+  'https://dsfklasdjf.kldjf',
+]
+
