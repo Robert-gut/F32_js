@@ -193,3 +193,164 @@
 // }
 
 // car.showInfo()
+
+/////////////////////////////// day 2/////////////////////////////////////////
+
+//? про методи і глибоке копіювання обєктів
+
+// const car = {
+//   name: 'MB',
+//   model: 'gla',
+//   maxSpeed: 340,
+// }
+// console.log('✌️car --->', car);
+
+//* не працює
+// const car2 = car
+// car2.maxSpeed = 333
+// console.log('✌️car2 --->', car2);
+// console.log('✌️car --->', car);
+
+//* Object.assing() великий мінус цього методу копіювання
+
+//1
+// const car3 = Object.assign({}, car)
+
+// car3.maxSpeed = 400
+// console.log('✌️car3 --->', car3);
+// console.log('✌️car --->', car);
+
+//2
+
+// const car4 = {...car}
+
+// car4.maxSpeed = 500
+// console.log('✌️car4 --->', car4);
+// console.log('✌️car --->', car);
+
+//! мінуси варянта 1 і 2
+
+// const car = {
+//   name: 'MB',
+//   model: 'gla',
+//   maxSpeed: {
+//     km: 400,
+//     ml: 250
+//   }
+// }
+// console.log('✌️car --->', car);
+
+//1 
+
+// const car3 = Object.assign({}, car)
+
+// car3.maxSpeed.km = 600
+// console.log('✌️car3 --->', car3);
+// console.log('✌️car --->', car);
+
+//2
+
+// const car4 = {...car}
+
+// car4.maxSpeed.km = 500
+// console.log('✌️car4 --->', car4);
+// console.log('✌️car --->', car);
+
+
+//! глибоке копіювання обєктів
+
+// const car = {
+//   name: 'MB',
+//   model: 'gla',
+//   maxSpeed: {
+//     km: 400,
+//     ml: 250
+//   }
+// }
+// console.log('✌️car --->', car);
+
+// const newCarJson = JSON.stringify(car)
+// console.log('✌️newCarJson --->', newCarJson);
+// console.log('✌️newCarJson --->',typeof newCarJson);
+
+// const newCar = JSON.parse(newCarJson)
+
+// const newCar = JSON.parse(JSON.stringify(car))
+
+// newCar.maxSpeed.km = 10000
+// console.log('✌️newCar --->', newCar);
+// console.log('✌️car --->', car);
+
+//! з чи не працює json
+// const car = {
+//   name: 'MB',
+//   model: 'gla',
+//   maxSpeed: {
+//     km: 400,
+//     ml: 250
+//   },
+  productionYear: new Date('2018-05-12'),
+// }
+// console.log('✌️car --->', car);
+
+
+// const newCar = JSON.parse(JSON.stringify(car))
+// console.log('✌️newCar --->', newCar);
+// console.log(car.productionYear.getTime());
+// console.log(newCar.productionYear.getTime());
+
+
+/////////////////////////////////////////////
+
+// const newCar = {...car}
+// console.log('✌️newCar --->', newCar);
+// console.log(car.productionYear.getTime());
+// console.log(newCar.productionYear.getTime());
+
+//! 
+
+// const newCar = structuredClone(car)
+// console.log('✌️newCar --->', newCar);
+// newCar.maxSpeed.km = 2000
+// console.log('✌️car --->', car);
+
+
+// console.log('✌️newCar --->', newCar.productionYear.getTime());
+
+//? методи  Object()
+
+//! Object.keys() : string[]
+
+// const car = {
+//   name: 'MB',
+//   model: 'gla',
+//   maxSpeed: 340,
+// }
+
+
+// const objKey = Object.keys(car)
+// console.log('✌️objKey --->', objKey);
+
+//! Object.values() : any[]
+
+// const objValue = Object.values(car)
+// console.log('✌️objValue --->', objValue);
+
+//! Object.entries() : [any[key value]]
+
+
+// const objEntries = Object.entries(car)
+// console.log('✌️objEntries --->', objEntries);
+
+//! Object.defineProperty()
+
+// const objProp = Object.defineProperty(car, 'clearance',{
+//   value: 550,
+//   enumerable: false
+// })
+
+// console.log('✌️objProp --->', objProp);
+// console.log('✌️objProp --->', objProp.clearance);
+
+
+
