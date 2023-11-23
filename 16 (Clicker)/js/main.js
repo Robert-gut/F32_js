@@ -18,6 +18,10 @@ function clearGameContaienr(){
   gameContainer.lastElementChild.remove()
 }
 
+function randomColor (){
+  return Math.floor(Math.random() * 255)
+}
+
 function getRandomPosition(){
   const maxX = gameContainer.clientWidth - 50
   const maxY = gameContainer.clientHeight - 50
@@ -33,7 +37,7 @@ function createSquare (){
   const {x, y} = getRandomPosition()
   square.style.left = `${x}px`
   square.style.top = `${y}px`
-
+  square.style.backgroundColor = `rgb(${randomColor()},${randomColor()},${randomColor()})`
   square.addEventListener('click', ()=>{
     if(gameActive){
       score++
