@@ -15,7 +15,7 @@ function updateTimer(){
 }
 
 function clearGameContaienr(){
-  gameContainer.firstElementChild.remove()
+  gameContainer.lastElementChild.remove()
 }
 
 function getRandomPosition(){
@@ -47,6 +47,7 @@ function createSquare (){
 
 
 function startGame() {
+  startBtn.style.display = 'none'
   gameActive = true
   score = 0
   timer = parseInt(document.querySelector('#duration').value) || 10
@@ -71,4 +72,5 @@ function endGame() {
   gameActive = false
   clearGameContaienr()
   alert(`Гра закінчина! Ваш Рахунок ${score}`)
+  startBtn.style.display = 'block'
 }
