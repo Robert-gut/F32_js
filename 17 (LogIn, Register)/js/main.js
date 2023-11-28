@@ -37,7 +37,7 @@ class User {
     console.log(this);
     localStorage.setItem(this.email, JSON.stringify(this))
     alert(`Успішна реєстрація`)
-
+    return true
   }
 }
 
@@ -55,10 +55,10 @@ registrationForm.addEventListener('submit', (event)=> {
   const confirm_password = document.getElementById('confirm_password').value
 
   const user = new User(firstName, lastName, date, email, password, confirm_password)
-  user.register()
-
-  // registrationForm.style.display = 'none'
-  // loginForm.style.display = 'block'
+  if (user.register()) {
+    registrationForm.style.display = 'none'
+    loginForm.style.display = 'block'
+  }
 })
 
 // ///////////////////////////////////////////////////////////
