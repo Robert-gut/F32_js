@@ -104,3 +104,19 @@ console.log('3');
 console.log('4');
 console.log('5');
 console.log('6');
+
+
+
+function createPromise(val){
+  return new Promise((resolve, reject)=>{
+    resolve(val)
+  })
+}
+
+createPromise('Robert!!')
+.then((val)=>{
+  console.log(val);
+})
+.catch(err => {
+  console.log(err);
+})
