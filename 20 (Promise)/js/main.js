@@ -74,7 +74,7 @@ const promise = new Promise(function(resolve, reject){
     }, 2000)
   })
 })
-.then(car => {
+.then((car) => {
   return new Promise((resolve, reject)=>{
     console.log('Status car...')
     const carWithFinalStatus = {
