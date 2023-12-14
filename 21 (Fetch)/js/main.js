@@ -33,26 +33,53 @@
 
 //! Fetch
 
+// const url = 'https://jsonplaceholder.typicode.com/users'
+
+// const btn = document.querySelector('#load')
+// btn.addEventListener('click', request)
+
+// function request() {
+  
+//   fetch(url)
+//     .then(response => {
+//       console.log('✌️response --->', response);
+//       btn.setAttribute('disabled', true)
+//       return response.json()
+//     })
+//     .then(data => {
+//       console.log('✌️data --->', data);
+//       const list =  document.querySelector('.list')
+//       const elem = data.map(item => {
+//         return `<li>${item.name} ${item.email} ${item.phone}</li>`
+//       })
+//       list.insertAdjacentHTML('afterbegin', elem.join(' '))
+//     })
+//     .catch(error => console.error('Error', error))
+// }
+
+
+//! async await 
+//! try catch
+
+
 const url = 'https://jsonplaceholder.typicode.com/users'
 
 const btn = document.querySelector('#load')
 btn.addEventListener('click', request)
 
-function request() {
-  
-  fetch(url)
-    .then(response => {
-      console.log('✌️response --->', response);
-      btn.setAttribute('disabled', true)
-      return response.json()
+async function request() {
+  try {
+    const response = await fetch(url)
+    const data = await response.json()
+    // console.log('✌️response --->', response);
+    // console.log('✌️data --->', data);
+    btn.setAttribute('disabled', true)
+    const list =  document.querySelector('.list')
+    const elem = data.map(item => {
+      return `<li>${item.name} ${item.email} ${item.phone}</li>`
     })
-    .then(data => {
-      console.log('✌️data --->', data);
-      const list =  document.querySelector('.list')
-      const elem = data.map(item => {
-        return `<li>${item.name} ${item.email} ${item.phone}</li>`
-      })
-      list.insertAdjacentHTML('afterbegin', elem.join(' '))
-    })
-    .catch(error => console.error('Error', error))
+    list.insertAdjacentHTML('afterbegin', elem.join(' '))
+  } catch (error) {
+    console.error('Error', error)
+  }
 }
