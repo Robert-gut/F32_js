@@ -22,7 +22,15 @@ const cleanData = () =>{
   postBody.value = state.editPost.body
 }
 
-const daletePost = (index) => {
+const editPost = (index) =>{
+  const idPost = state.posts[index]
+  state.editPost = idPost
+
+  postTitle.value = state.editPost.title
+  postBody.value = state.editPost.body
+}
+
+const deletePost = (index) => {
   const idPost = state.posts[index]
 
   removePostRequest(idPost)
@@ -39,11 +47,13 @@ const createPost = (post, index) => `
   <p class="wrapper_body">${post.body}</p>
 </div>
 <div class="post_buttons">
-  <button class="buttons_edit">Edit</button>
-  <button class="buttons_delete">Delete</button>
+  <button class="buttons_edit" onclick="editPost(${index})">Edit</button>
+  <button class="buttons_delete" onclick="deletePost(${index})">Delete</button>
 </div>
 </div>
 `
+
+
 
 const fillPostsList = (posts) => {
   postsList.innerHTML = ''
@@ -64,9 +74,19 @@ postTitle.addEventListener('change', (e) => {
 postBody.addEventListener('change', (e) => {
   if(!!state.editPost.body){
     return state.editPost.body = e.target.value
-  }else{
-    return state.newPost.body = e.target.value
   }
+  return state.newPost.body = e.target.value
+})
+
+addNewPost.addEventListener('click', async () => {
+  if (!!state.editPost.title || !!state.editPost.body) {
+    await updatePostRequest()
+  } else {
+    await createPostRequest()
+  }
+
+  cleanData()
+  fillPostsList(state.posts)
 })
 
 getPostsBtn.addEventListener('click', async () => {
@@ -85,3 +105,35 @@ function getPostsRequest() {
   .then((posts) => state.posts = state.posts.concat(posts))
 }
 
+function createPostRequest() {
+  return fetch('https://jsonplaceholder.typicode.com/posts', {
+    method: 'POST',
+    body: JSON.stringify(state.newPost),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  })
+  .then((res) => res.json())
+  .then((post) => state.posts.push(post))
+}
+
+function updatePostRequest() {
+  return fetch(`https://jsonplaceholder.typicode.com/posts/${state.editPost.id}`, {
+    method: 'PUT',
+    body: JSON.stringify(state.editPost),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  })
+  .then((res) => res.json())
+  .then((data) => data)
+}
+
+function removePostRequest(id) {
+  return fetch(`https://jsonplaceholder.typicode.com/posts/${id}`,{
+  method: 'DELETE',
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
+  })
+}
