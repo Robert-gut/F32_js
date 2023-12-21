@@ -30,7 +30,15 @@ const weather = async(url) => {
     if(response.status === 404){
       input.style.borderColor = 'red'
     }
+    generelInfo(data)
   } catch (error) {
     console.error('Error', error)
   }
+}
+
+function generelInfo(data) {
+  document.querySelector('.weather h1').innerHTML = new Date(data.city.sunset).getHours()
+
+  document.querySelector('.search').style.display = 'none'
+  document.querySelector('.weather').style.display = 'block'
 }

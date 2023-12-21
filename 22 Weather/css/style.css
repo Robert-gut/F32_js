@@ -49,4 +49,8 @@ body {
   font-weight: 800;
   font-size: 25px;
   cursor: pointer;
+}
+
+.weather {
+  display: none;
 }/*# sourceMappingURL=style.css.map */
