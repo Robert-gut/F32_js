@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>brDB</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <h1>Stotage</h1>
+
+    <div>
+      <label for="dataInput">Enter data:</label>
+      <input type="text" id="dataInput" placeholder="Data">
+      <button id="saveData">Save Data</button>
+    </div>
+
+    <div id="localStorageData">
+      <h2>Local Storage Data</h2>
+      <p id="localStorageOutput"></p>
+    </div>
+
+    <div id="sessionStorageData">
+      <h2>Session Storage Data</h2>
+      <p id="sessionStorageOutput"></p>
+    </div>
+
+    <div id="cookieData">
+      <h2>Cookie Data</h2>
+      <p id="cookieOutput"></p>
+    </div>
+
+    <div>
+      <button id="clearLS">Clear LS</button>
+      <button id="clearSS">Clear SS</button>
+      <button id="clearC">Clear C</button>
+    </div>
+   
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
