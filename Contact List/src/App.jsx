@@ -5,10 +5,10 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
 //import componets
 import Header from './components/Header/Header'
-import ContactList from './components/ContactList/ContactList'
-import NewContant from './components/NewContact/NewContact'
-import UpdateContact from './components/UpdateContact/UpdateContact'
-import NotFound from './components/NotFound/NotFound'
+import ContactList from './pages/ContactList/ContactList'
+import NewContant from './pages/NewContact/NewContact'
+import UpdateContact from './pages/UpdateContact/UpdateContact'
+import NotFound from './pages/NotFound/NotFound'
 
 function App() {
 
