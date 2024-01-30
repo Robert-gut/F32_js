@@ -66,13 +66,14 @@ const NewContact = () =>{
               </div>
               <div>
                 <label htmlFor='gender'>Gender</label>
-                <Field component='select' name='gender' placeholder='test'>
-                  <option value=''>Choose gender</option>
+                <Field as='select' name='gender' placeholder='Choose gender'>
+
                   <option value='Men'>Men</option>
                   <option value='Women'>Women</option>
                 </Field>
                 <ErrorMessage name='avatar' component='p' className='text-danger'/>
               </div>
+
               <div>
                 <label htmlFor='status'>Status</label>
                 <Field as='select' name='status'>
