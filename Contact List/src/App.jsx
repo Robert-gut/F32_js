@@ -29,12 +29,17 @@ function App() {
     ]
   )
 
+  const handleNewContact = (newContact) => {
+    setStor(prevStor => [...prevStor, newContact])
+    console.log(stor);
+  }
+
   return (
     <Router>
       <Header/>
       <Routes>
         <Route path='/' element={<ContactList stor={stor}/>}/>
-        <Route path='/new-contact' element={<NewContant/>} />
+        <Route path='/new-contact' element={<NewContant onNewContact={handleNewContact}/>} />
         <Route path='/update-contact' element={<UpdateContact/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>

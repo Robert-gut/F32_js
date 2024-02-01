@@ -7,7 +7,9 @@ import {Formik, Form, Field, ErrorMessage} from 'formik'
 
 import { v4 as uuidv4 } from 'uuid';
 
-const NewContact = () =>{
+import { useNavigate } from 'react-router-dom';
+
+const NewContact = ({ onNewContact }) =>{
 
   const initialValues = {
     id: uuidv4(),
@@ -30,9 +32,12 @@ const NewContact = () =>{
     favorite: Yup.boolean()
   })
 
+  const navigate = useNavigate()
   const handleSubmit = (values, {setSubmitting} ) => {
     console.log(values);
     setSubmitting(true)
+    onNewContact(values)
+    navigate('/')
   }
 
   return(
