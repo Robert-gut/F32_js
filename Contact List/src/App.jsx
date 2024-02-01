@@ -10,13 +10,30 @@ import NewContant from './pages/NewContact/NewContact'
 import UpdateContact from './pages/UpdateContact/UpdateContact'
 import NotFound from './pages/NotFound/NotFound'
 
+// hooks
+import { useState } from 'react'
+
 function App() {
+  const [stor, setStor] = useState(
+    [
+      {
+        id: "020852d9-8fc4-4a05-b542-4ff8d37d1ac5",
+        name: "Test",
+        phone: "3124124 123 123",
+        email: "master@email.com",
+        avatar: 'https://randomuser.me/api/portraits/women/94.jpg',
+        gender: "Women",
+        status: "Work",
+        favorite: false
+      }
+    ]
+  )
 
   return (
     <Router>
       <Header/>
       <Routes>
-        <Route path='/' element={<ContactList />}/>
+        <Route path='/' element={<ContactList stor={stor}/>}/>
         <Route path='/new-contact' element={<NewContant/>} />
         <Route path='/update-contact' element={<UpdateContact/>}/>
         <Route path='*' element={<NotFound/>}/>
