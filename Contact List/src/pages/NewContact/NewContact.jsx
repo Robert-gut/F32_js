@@ -2,13 +2,14 @@
 import './NewContact.scss'
 
 //valid
-import * as Yup from 'yup'
 import {Formik, Form, Field, ErrorMessage} from 'formik'
+import { validationSchema } from './validation/Validation'
 
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
+// eslint-disable-next-line react/prop-types
 const NewContact = ({ onNewContact }) =>{
 
   const initialValues = {
@@ -22,80 +23,72 @@ const NewContact = ({ onNewContact }) =>{
     favorite: false
   }
 
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Name is required'),
-    phone: Yup.string().required('Phone is required'),
-    email: Yup.string().email('Invalid email').required('Email is required'),
-    avatar: Yup.string().url('Invalid URL').required('Avatar is required'),
-    gender: Yup.string().oneOf(['Men', 'Women'], 'Invalid gender').required('Gender is required'),
-    status: Yup.string().oneOf(['Work', 'Family', 'Private', 'Friends'], 'Invalid status').required('Status is required'),
-    favorite: Yup.boolean()
-  })
 
   const navigate = useNavigate()
-  const handleSubmit = (values, {setSubmitting} ) => {
+  const handleSubmit = (values, {setSubmitting, resetForm} ) => {
     console.log(values);
     setSubmitting(true)
+    resetForm()
     onNewContact(values)
     navigate('/')
   }
 
   return(
     <div className="container">
-      <div className="modal-content rounded AddPage">
-        <div className="modal-header">
-          <h1 className='text-center text-danger'> Add new contact</h1>
-        </div>
+      <div className="rounded AddPage shadow-lg">
         <Formik initialValues={initialValues} validationSchema={validationSchema}  onSubmit={handleSubmit}>
           {({ isSubmitting }) => (
             <Form>
-              <div>
+              <h1 className='text-center'> Add new contact</h1>
+              <hr />
+              <div className='m-4'>
                 <label htmlFor='name'>Name</label>
-                <Field type='text' name='name' id='name'/>
-                <ErrorMessage name='name' component='p' className='text-danger' />
+                <Field className='form-control fs-5' type='text' name='name' id='name'/>
+                <ErrorMessage name='name' component='p' className='text-danger position-absolute' />
               </div>
-              <div>
+              <div className='m-4'>
                 <label htmlFor='phone'>Phone</label>
-                <Field type='text' name='phone' id='phone'/>
-                <ErrorMessage name='phone' component='p' className='text-danger'/>
+                <Field className='form-control fs-5' type='text' name='phone' id='phone'/>
+                <ErrorMessage name='phone' component='p' className='text-danger position-absolute'/>
               </div>
-              <div>
+              <div className='m-4'>
                 <label htmlFor='email'>Email</label>
-                <Field type='email' name='email' id='email'/>
-                <ErrorMessage name='email' component='p' className='text-danger'/>
+                <Field className='form-control fs-5' type='email' name='email' id='email'/>
+                <ErrorMessage name='email' component='p' className='text-danger position-absolute'/>
               </div>
-              <div>
+              <div className='m-4'>
                 <label htmlFor='avatar'>Avatar</label>
-                <Field type='text' name='avatar' id='avatar'/>
-                <ErrorMessage name='avatar' component='p' className='text-danger'/>
+                <Field className='form-control fs-5' type='number' name='avatar' id='avatar' min={0} max={99}/>
+                <ErrorMessage name='avatar' component='p' className='text-danger position-absolute'/>
               </div>
-              <div>
+              <div className='m-4'>
                 <label htmlFor='gender'>Gender</label>
-                <Field as='select' name='gender' placeholder='Choose gender'>
-
-                  <option value='Men'>Men</option>
-                  <option value='Women'>Women</option>
+                <Field className='form-control fs-5' as='select' name='gender' placeholder='Choose gender'>
+                  <option value='men'>Men</option>
+                  <option value='women'>Women</option>
                 </Field>
-                <ErrorMessage name='avatar' component='p' className='text-danger'/>
+                <ErrorMessage name='gender' component='p' className='text-danger position-absolute'/>
               </div>
 
-              <div>
+              <div className='m-4'>
                 <label htmlFor='status'>Status</label>
-                <Field as='select' name='status'>
+                <Field className='form-control fs-5' as='select' name='status'>
                   <option value=''>Choose status</option>
                   <option value='Work'>Work</option>
                   <option value='Family'>Family</option>
                   <option value='Private'>Private</option>
                   <option value='Friends'>Friends</option>
                 </Field>
-                <ErrorMessage name='avatar' component='p' className='text-danger'/>
+                <ErrorMessage name='status' component='p' className='text-danger position-absolute'/>
               </div>
-              <div>
-                <label htmlFor='favorite'>Favorit</label>
-                <Field type='checkbox' name='favorite' id='favorite'/>
-                <ErrorMessage name='favorite' component='p' className='text-danger'/>
+              <div className='m-4'>
+                <label htmlFor='favorite' className='form-check-label fs-5'>Favorit</label>
+                <Field className='form-check-input m-1 fs-4' type='checkbox' name='favorite' id='favorite'/>
+                <ErrorMessage name='favorite' component='p' className='text-danger position-absolute'/>
               </div>
-              <button type='submit' className='btn btn-primary btn-lg' disabled={isSubmitting}>Add</button>
+              <div className="m-4">
+              <button type='submit' className='btn btn-primary btn-lg form-control' disabled={isSubmitting}>Add</button>
+              </div>
             </Form>
           )}
         </Formik>

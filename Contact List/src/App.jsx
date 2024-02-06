@@ -14,6 +14,7 @@ import NotFound from './pages/NotFound/NotFound'
 import { useState } from 'react'
 
 function App() {
+
   const [stor, setStor] = useState(
     [
       {
@@ -21,13 +22,15 @@ function App() {
         name: "Test",
         phone: "3124124 123 123",
         email: "master@email.com",
-        avatar: 'https://randomuser.me/api/portraits/women/94.jpg',
-        gender: "Women",
+        avatar: '95',
+        gender: "women",
         status: "Work",
         favorite: false
       }
     ]
   )
+
+
 
   const handleNewContact = (newContact) => {
     setStor(prevStor => [...prevStor, newContact])
