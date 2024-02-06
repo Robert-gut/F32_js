@@ -5,7 +5,7 @@ import Sidevar from '../../components/Sidebar/Sidebar'
 import ContactItem  from '../../components/ContactItem/ContactItem'
 
 
-const ContactList = ({ stor }) =>{
+const ContactList = ({ stor, onDeleteContact }) =>{
   return(
     <main className='container rounded'>
       <div className="row">
@@ -13,7 +13,7 @@ const ContactList = ({ stor }) =>{
           <Sidevar/>
         </div>
         <div className="col-9">
-          <ContactItem stor={stor}/>
+          <ContactItem stor={stor} onDeleteContact={onDeleteContact}/>
         </div>
       </div>
     </main>

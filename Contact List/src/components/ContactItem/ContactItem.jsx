@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom"
 
-const ContactItem = ({ stor }) =>{
+const ContactItem = ({ stor, onDeleteContact }) =>{
+
+  const deleteContact = (id) => {
+    onDeleteContact(id)
+  }
+
   return(
     <>
     <div className="container-fluid">
@@ -34,10 +39,8 @@ const ContactItem = ({ stor }) =>{
           </div>
           <div className="col-3">
             <Link to='/update-contact'><button>edit</button></Link>
-            <button>delete</button>
+            <button onClick={() => deleteContact(contact.id)}>delete</button>
           </div>
-
-
         </div>
       </div>
     ))}
