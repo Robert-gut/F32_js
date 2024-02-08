@@ -3,7 +3,7 @@ import './NewContact.scss'
 
 //valid
 import {Formik, Form, Field, ErrorMessage} from 'formik'
-import { validationSchema } from './validation/Validation'
+import { validationSchema } from '../../assets/validation/Validation'
 
 import { v4 as uuidv4 } from 'uuid'
 
@@ -64,6 +64,7 @@ const NewContact = ({ onNewContact }) =>{
               <div className='m-4'>
                 <label htmlFor='gender'>Gender</label>
                 <Field className='form-control fs-5' as='select' name='gender' placeholder='Choose gender'>
+                  <option value=''>Choose gender</option>
                   <option value='men'>Men</option>
                   <option value='women'>Women</option>
                 </Field>

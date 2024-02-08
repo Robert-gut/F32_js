@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom"
 
+// import EditIcon from '@mui/icons-material/Edit';
+
 const ContactItem = ({ stor, onDeleteContact }) =>{
 
   const deleteContact = (id) => {
@@ -8,6 +10,7 @@ const ContactItem = ({ stor, onDeleteContact }) =>{
 
   return(
     <>
+    {/* <EditIcon/> */}
     <div className="container-fluid">
       <div className="row border-bottom">
         <div className="col-4 ">
@@ -38,7 +41,7 @@ const ContactItem = ({ stor, onDeleteContact }) =>{
             <p>{contact.email}</p>
           </div>
           <div className="col-3">
-            <Link to='/update-contact'><button>edit</button></Link>
+            <Link to={`/update-contact/${contact.id}`}><button>edit</button></Link>
             <button onClick={() => deleteContact(contact.id)}>delete</button>
           </div>
         </div>
