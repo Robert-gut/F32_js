@@ -8,33 +8,31 @@ import { validationSchema } from '../../assets/validation/Validation'
 import { useNavigate, useParams } from 'react-router-dom'
 
 // eslint-disable-next-line react/prop-types
-const UpdateContact = ({ stor }) =>{
+const UpdateContact = ({ stor, onUpdateConstac }) =>{
 
   const { id } = useParams()
 
   const contact = stor.find(contact => contact.id === id)
 
-  console.log(contact)
-
 
   const initialValues = {
-    id: '',
-    name: 'testtest',
-    phone: 'testtest',
-    email: 'testtest',
-    avatar: 'testtest',
-    gender: 'testtest',
-    status: '',
-    favorite: false
+    id: contact.id,
+    name: contact.name,
+    phone: contact.phone,
+    email: contact.email,
+    avatar: contact.avatar,
+    gender: contact.gender,
+    status: contact.status,
+    favorite: contact.favorite
   }
 
 
   const navigate = useNavigate()
-  const handleSubmit = (values, {setSubmitting, resetForm} ) => {
-    console.log(values);
-    setSubmitting(true)
-    resetForm()
-    onNewContact(values)
+
+  const handleSubmit = (values) => {
+    if (contact !== values) {
+      onUpdateConstac(values)
+    }
     navigate('/')
   }
 

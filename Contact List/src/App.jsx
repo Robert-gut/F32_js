@@ -49,13 +49,24 @@ function App() {
     setStor(prevStor => prevStor.filter(contact => contact.id !== id))
   }
 
+  const handleUpdateContact = (updatedContact) =>{
+    setStor(prevStor => {
+      return prevStor.map(contact => {
+        if (contact.id === updatedContact.id) {
+          return {...contact, ...updatedContact}
+        }
+        return contact
+      })
+    })
+  }
+
   return (
     <Router>
       <Header/>
       <Routes>
         <Route path='/' element={<ContactList stor={stor} onDeleteContact={handleDeleteContact}/>}/>
         <Route path='/new-contact' element={<NewContant onNewContact={handleNewContact}/>} />
-        <Route path='/update-contact/:id' element={<UpdateContact stor={stor}/>}/>
+        <Route path='/update-contact/:id' element={<UpdateContact stor={stor} onUpdateConstac={handleUpdateContact}/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
 
