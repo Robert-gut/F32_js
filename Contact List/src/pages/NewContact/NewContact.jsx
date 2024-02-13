@@ -1,16 +1,14 @@
-//css
 import './NewContact.scss'
-
-//valid
 import {Formik, Form, Field, ErrorMessage} from 'formik'
 import { validationSchema } from '../../assets/validation/Validation'
-
 import { v4 as uuidv4 } from 'uuid'
-
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addContact } from '../../redux/actions'
 
-// eslint-disable-next-line react/prop-types
-const NewContact = ({ onNewContact }) =>{
+const NewContact = () =>{
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const initialValues = {
     id: uuidv4(),
@@ -24,12 +22,8 @@ const NewContact = ({ onNewContact }) =>{
   }
 
 
-  const navigate = useNavigate()
-  const handleSubmit = (values, {setSubmitting, resetForm} ) => {
-    console.log(values);
-    setSubmitting(true)
-    resetForm()
-    onNewContact(values)
+  const handleSubmit = (values) => { 
+    dispatch(addContact(values))
     navigate('/')
   }
 

@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import { deleteContact } from "../../redux/actions"
 
-// import EditIcon from '@mui/icons-material/Edit';
+const ContactItem = () =>{
+  const contacts = useSelector(state => state.contacts)
+  const dispatch = useDispatch()
 
-const ContactItem = ({ stor, onDeleteContact }) =>{
-
-  const deleteContact = (id) => {
-    onDeleteContact(id)
+  const handleDeleteContact = (id) => {
+    dispatch(deleteContact(id))
   }
 
   return(
     <>
-    {/* <EditIcon/> */}
     <div className="container-fluid">
       <div className="row border-bottom">
         <div className="col-4 ">
@@ -24,7 +25,7 @@ const ContactItem = ({ stor, onDeleteContact }) =>{
         </div>
       </div>
     </div>
-    {stor.map((contact) => (
+    {contacts.map((contact) => (
       <div key={contact.id} className="row p-4">
         <div className="col-2">
         <img className="rounded-circle" src={`https://randomuser.me/api/portraits/${contact.gender}/${contact.avatar}.jpg`} alt="avatar"/>
@@ -42,7 +43,7 @@ const ContactItem = ({ stor, onDeleteContact }) =>{
           </div>
           <div className="col-3">
             <Link to={`/update-contact/${contact.id}`}><button>edit</button></Link>
-            <button onClick={() => deleteContact(contact.id)}>delete</button>
+            <button onClick={() => handleDeleteContact(contact.id)}>delete</button>
           </div>
         </div>
       </div>
