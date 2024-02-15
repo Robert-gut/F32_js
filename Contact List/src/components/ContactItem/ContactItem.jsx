@@ -4,11 +4,17 @@ import { deleteContact } from "../../redux/actions"
 
 const ContactItem = () =>{
   const contacts = useSelector(state => state.contacts)
+  const searchTerm = useSelector(state => state.searchTerm)
   const dispatch = useDispatch()
 
   const handleDeleteContact = (id) => {
     dispatch(deleteContact(id))
   }
+
+  const filteredContacts = 
+  searchTerm 
+  ? contacts.filter(contact => contact.name.toLowerCase().includes(searchTerm))
+  : contacts
 
   return(
     <>
@@ -25,7 +31,7 @@ const ContactItem = () =>{
         </div>
       </div>
     </div>
-    {contacts.map((contact) => (
+    {filteredContacts.map(contact => (
       <div key={contact.id} className="row p-4">
         <div className="col-2">
         <img className="rounded-circle" src={`https://randomuser.me/api/portraits/${contact.gender}/${contact.avatar}.jpg`} alt="avatar"/>

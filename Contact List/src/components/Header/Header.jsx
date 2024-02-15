@@ -1,8 +1,20 @@
 import './Header.scss'
-
 import { Link } from "react-router-dom"
+import { useDispatch } from 'react-redux'
+import { searchContact } from '../../redux/actions'
+// import { useState } from 'react'
 
 const Header = () =>{
+  // const [searchTerm, setSearchTerm] = useState()
+
+  const dispatch = useDispatch()
+  const handleCange = (e) => {
+    const value = e.target.value
+    console.log(value);
+    dispatch(searchContact(value))
+  }
+
+
   return(
     <nav className="container rounded">
       <div className="row">
@@ -16,7 +28,7 @@ const Header = () =>{
         </div>
         <div className="col-4"></div>
         <div className="col-4">
-          <input type="text" className="form-control fs-6" placeholder="Search"/>
+          <input type="text" className="form-control fs-6" placeholder="Search" onChange={handleCange}/>
         </div>
       </div>
     </nav>

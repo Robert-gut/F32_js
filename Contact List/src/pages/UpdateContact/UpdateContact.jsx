@@ -1,19 +1,16 @@
-//css
 import './UpdateContact.scss'
-
-//valid
 import {Formik, Form, Field, ErrorMessage} from 'formik'
 import { validationSchema } from '../../assets/validation/Validation'
-
 import { useNavigate, useParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { editContact } from '../../redux/actions'
 
-// eslint-disable-next-line react/prop-types
-const UpdateContact = ({ stor, onUpdateConstac }) =>{
 
+const UpdateContact = () =>{
   const { id } = useParams()
-
-  const contact = stor.find(contact => contact.id === id)
-
+  const navigate = useNavigate()
+  const contact = useSelector(state => state.contacts.find(contact => contact.id === id))
+  const dispatch = useDispatch()
 
   const initialValues = {
     id: contact.id,
@@ -26,12 +23,9 @@ const UpdateContact = ({ stor, onUpdateConstac }) =>{
     favorite: contact.favorite
   }
 
-
-  const navigate = useNavigate()
-
   const handleSubmit = (values) => {
     if (contact !== values) {
-      onUpdateConstac(values)
+      dispatch(editContact(id, values))
     }
     navigate('/')
   }

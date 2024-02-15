@@ -1,4 +1,4 @@
-import { ADD_CONTACT, DELETE_CONTACT} from './type'
+import { ADD_CONTACT, DELETE_CONTACT, EDIT_CONTACT, SEARCH_CONTACT} from './type'
 
 const intialState = {
   contacts: [
@@ -23,6 +23,7 @@ const intialState = {
       favorite: false
     }
   ],
+  searchTerm: '',
 }
 
 const reducer = (state = intialState, action) => {
@@ -36,6 +37,23 @@ const reducer = (state = intialState, action) => {
       return{
         ...state,
         contacts: state.contacts.filter(contact => contact.id !== action.payload)
+      }
+    case EDIT_CONTACT:
+      return {
+        ...state,
+        contacts: state.contacts.map(contact => {
+          if (contact.id === action.payload.id) {
+            return {
+              ...action.payload.updatedContact
+            }
+          }
+          return contact
+        })
+      }
+    case SEARCH_CONTACT:
+      return{
+        ...state,
+        searchTerm: action.payload
       }
     default:
       return state

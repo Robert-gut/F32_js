@@ -1,7 +1,12 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const NotFound = () =>{
   const [count, setCount] = useState(0)
+
+
+  useEffect(() => {
+    console.log('test');
+  },[])
 
   return(
     <div>
