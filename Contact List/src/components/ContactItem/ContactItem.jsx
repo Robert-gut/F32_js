@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { deleteContact } from "../../redux/actions"
+import { useContext } from "react"
+import { TestContext } from '../../Context'
 
 const ContactItem = () =>{
   const contacts = useSelector(state => state.contacts)
   const searchTerm = useSelector(state => state.searchTerm)
   const dispatch = useDispatch()
+  const { name } = useContext(TestContext)
 
   const handleDeleteContact = (id) => {
     dispatch(deleteContact(id))
@@ -18,6 +21,7 @@ const ContactItem = () =>{
 
   return(
     <>
+    <h1>{name}</h1>
     <div className="container-fluid">
       <div className="row border-bottom">
         <div className="col-4 ">

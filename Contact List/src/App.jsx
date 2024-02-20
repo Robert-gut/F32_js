@@ -7,20 +7,23 @@ import UpdateContact from './pages/UpdateContact/UpdateContact'
 import NotFound from './pages/NotFound/NotFound'
 import { Provider} from 'react-redux'
 import store from './store'
+import Context from './Context'
 
 function App() {
 
   return (
     <Provider store={store}>
-      <Router>
-      <Header/>
-        <Routes>
-          <Route path='/' element={<ContactList/>}/>
-          <Route path='/new-contact' element={<NewContant/>} />
-          <Route path='/update-contact/:id' element={<UpdateContact/>}/>
-          <Route path='*' element={<NotFound/>}/>
-        </Routes>
-      </Router>
+      <Context>
+        <Router>
+        <Header/>
+          <Routes>
+            <Route path='/' element={<ContactList/>}/>
+            <Route path='/new-contact' element={<NewContant/>} />
+            <Route path='/update-contact/:id' element={<UpdateContact/>}/>
+            <Route path='*' element={<NotFound/>}/>
+          </Routes>
+        </Router>
+      </Context>
     </Provider>
   )
 }

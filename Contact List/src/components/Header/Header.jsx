@@ -2,16 +2,20 @@ import './Header.scss'
 import { Link } from "react-router-dom"
 import { useDispatch } from 'react-redux'
 import { searchContact } from '../../redux/actions'
-// import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const Header = () =>{
-  // const [searchTerm, setSearchTerm] = useState()
-
+  const [searchTerm, setSearchTerm] = useState('')
   const dispatch = useDispatch()
+
+  // console.log('header');
+  useEffect(()=>{
+    dispatch(searchContact(searchTerm.toLowerCase()))
+  },[searchTerm])
+
   const handleCange = (e) => {
     const value = e.target.value
-    console.log(value);
-    dispatch(searchContact(value))
+    setSearchTerm(value)
   }
 
 
