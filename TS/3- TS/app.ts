@@ -153,26 +153,161 @@ console.log(typeof num);
 
 //* обєднання type
 
-type User = {
-  name: string,
-  age: number,
-  slills: string[]
-}
+// type User = {
+//   name: string,
+//   age: number,
+//   slills: string[]
+// }
 
-type Role = {
-  nameRole: string,
-  id: number
-}
+// type Role = {
+//   nameRole: string,
+//   id: number
+// }
 
-type UserWithRole = User & Role
-//! intersection  &
+// type UserWithRole = User & Role
+// //! intersection  &
 
-const user: UserWithRole = {
-  name: 'Alex',
-  age: 28,
-  slills: ['1','2'],
-  nameRole: 'ADMIN',
-  id: 123
-}
+// const user: UserWithRole = {
+//   name: 'Alex',
+//   age: 28,
+//   slills: ['1','2'],
+//   nameRole: 'ADMIN',
+//   id: 123
+// }
 
 //! 4 interface
+
+// type UserType = {
+//   name: string,
+//   age: number,
+//   slills: string[]
+// }
+
+// interface UserIntrf {
+//   name: string,
+//   age: number,
+//   slills: string[]
+// }
+
+// const user: UserType = {
+//   name: 'Alex',
+//   age: 28,
+//   slills: ['1','2']
+// }
+
+// const user1: UserIntrf = {
+//   name: 'Alex',
+//   age: 28,
+//   slills: ['1','2']
+// }
+
+
+// interface User {
+//   name: string,
+//   age: number,
+//   skills: string[]
+// }
+
+//1
+
+// interface UserWithRole extends User {
+//   releId: number
+// }
+
+//2
+
+// interface Role {
+//   releId: number
+// }
+
+// interface UserWithRole extends User, Role {
+//   createAt: Date
+// }
+
+// const user: UserWithRole = {
+//   name: 'Alex',
+//   age: 20,
+//   skills: ['dev', 'qa'],
+//   releId: 234,
+//   createAt: new Date()
+// }
+
+// ! fn 
+
+// interface User {
+//   name: string,
+//   age: number,
+//   skills: string[],
+//   log: (id: number) => string
+// }
+
+// type User = {
+//   name: string,
+//   age: number,
+//   skills: string[],
+//   log: (id: number) => string
+// }
+
+
+// ! різниця між interface and type
+
+// interface User {
+//   name: string
+// }
+
+// interface User {
+//   age: number
+// }
+
+// const person: User = {
+//   name: 'Alex',
+//   age: 34
+// }
+
+//! type
+
+// type Id = string | number
+
+// interface ID {
+//   ID: string | number
+// }
+
+
+//! 5 opsional (опціональнісьть в ts) ?
+interface User {
+  login: string,
+  password?: string
+}
+
+const user: User = {
+  login: 'test@gmail.com',
+}
+
+const user1: User = {
+  login: 'test@gmail.com',
+  password: 'qwerty-1'
+}
+
+//! in fun
+
+function multiply(a: number, b?: number): number{
+  // if(!b){
+  //   return a * a
+  // }
+  // return a * b
+  return !b ? a * a : a * b
+}
+
+//! fun + obj
+
+interface UserPro {
+  email: string,
+  password?: {
+    type: 'primary' | 'secondary'
+  }
+}
+
+function testPass(user: UserPro):void{
+  const t = user.password?.type
+  const test = user.password!.type
+}

@@ -51,12 +51,23 @@ function logIds(a, b) {
 //? 1 ЛІТЕРАЛЬНІ ТИПИ ЧИСЕЛ
 let num = 1;
 console.log(typeof num);
-//! intersection  &
 const user = {
-    name: 'Alex',
-    age: 28,
-    slills: ['1', '2'],
-    nameRole: 'ADMIN',
-    id: 123
+    login: 'test@gmail.com',
 };
-//! 4 interface
+const user1 = {
+    login: 'test@gmail.com',
+    password: 'qwerty-1'
+};
+//! in fun
+function multiply(a, b) {
+    // if(!b){
+    //   return a * a
+    // }
+    // return a * b
+    return !b ? a * a : a * b;
+}
+function testPass(user) {
+    var _a;
+    const t = (_a = user.password) === null || _a === void 0 ? void 0 : _a.type;
+    const test = user.password.type;
+}
